@@ -17,18 +17,18 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// app.use(loggerMiddleware);
-// app.use(express.static('public'));
-// app.use(compression());
-// app.set('views', './src/views');
-// app.set('view engine', 'hbs');
+app.use(loggerMiddleware);
+app.use(express.static('public'));
+app.use(compression());
+app.set('views', './src/views');
+app.set('view engine', 'hbs');
 
-// app.engine('hbs', engine({
-//     extname: '.hbs',
-//     defaultLayout: 'index.hbs',
-//     layoutsDir: __dirname + '/views/layouts',
-//     partialsDir: __dirname + '/views/partials'
-// }))
+app.engine('hbs', engine({
+    extname: '.hbs',
+    defaultLayout: 'index.hbs',
+    layoutsDir: __dirname + '/views/layouts',
+    partialsDir: __dirname + '/views/partials'
+}))
 
 app.use(
     session({
@@ -59,7 +59,7 @@ app.all("*", (req, res) => {
     res.status(404).json({ "error": "ruta no existente" })
 });
 
-/* --------------- Leer el puerto por consola o setear default -------------- */
+//Puerto por consola o set default
 
 const options = {
     alias: {
